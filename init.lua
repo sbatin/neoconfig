@@ -9,26 +9,24 @@ vim.opt.wildignore = '*/dist/*, */target/*, */node_modules/*'
 
 local keyset = vim.keymap.set
 
-keyset('', '<Tab>', ':BufferNext<CR>')                   -- cycle between buffers
+keyset('', '<Tab>', '<C-W>w')                            -- switch between panels
 keyset('', '<C-f>', ':vimgrep! <cword> **/*<CR>:cw<CR>') -- global search in files
-keyset('', '<F1>', ':FTermOpen<CR>')                     -- open terminal
-keyset('', '<F2>', '<C-W>w')                             -- switch between panels
-keyset('', '<F3>', ':cclose<CR>')                        -- close quickfix window
-keyset('', '<F5>', ':DapContinue<CR>')
+keyset('', '<F1>' , ':FTermOpen<CR>')
+keyset('', '<F5>' , ':DapContinue<CR>')
 keyset('', '<F17>', ':DapTerminate<CR>')                 -- F17 === Shift+F5
-keyset('', '<F9>', ':DapToggleBreakpoint<CR>')
+keyset('', '<F9>' , ':DapToggleBreakpoint<CR>')
 keyset('', '<F10>', ':DapStepOver<CR>')
 keyset('', '<F11>', ':DapStepInto<CR>')
 keyset('', '<F23>', ':DapStepOut<CR>')                   -- F23 === Shift+F11
 
 -- map <Shift>-Arrows to selecting characters/lines
-keyset('n', '<S-Up>', 'v<Up>')
-keyset('n', '<S-Down>', 'v<Down>')
-keyset('n', '<S-Left>', 'v<Left>')
+keyset('n', '<S-Up>'   , 'v<Up>')
+keyset('n', '<S-Down>' , 'v<Down>')
+keyset('n', '<S-Left>' , 'v<Left>')
 keyset('n', '<S-Right>', 'v<Right>')
-keyset('v', '<S-Up>', '<Up>')
-keyset('v', '<S-Down>', '<Down>')
-keyset('v', '<S-Left>', '<Left>')
+keyset('v', '<S-Up>'   , '<Up>')
+keyset('v', '<S-Down>' , '<Down>')
+keyset('v', '<S-Left>' , '<Left>')
 keyset('v', '<S-Right>', '<Right>')
 
 -- switch between buffers with \number
