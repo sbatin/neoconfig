@@ -2,7 +2,7 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- Color themes
+  -- Color themes, UI icons
   use {
     'loctvl842/monokai-pro.nvim',
     config = function()
@@ -11,12 +11,9 @@ return require('packer').startup(function(use)
   }
 
   use 'Mofiqul/vscode.nvim'
-
-  -- Generic plugins
   use 'nvim-tree/nvim-web-devicons'
 
-  use 'numToStr/FTerm.nvim'
-
+  -- Project tree
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
@@ -44,6 +41,7 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Status line
   use {
     'nvim-lualine/lualine.nvim',
     config = function()
@@ -60,8 +58,13 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Tabbar
   use 'romgrk/barbar.nvim'
 
+  -- Terminal
+  use 'numToStr/FTerm.nvim'
+
+  -- Better syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -81,6 +84,7 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- LSP client configs
   use {
     'neovim/nvim-lspconfig',
     config = function()
