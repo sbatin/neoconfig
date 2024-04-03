@@ -65,18 +65,18 @@ vim.api.nvim_create_user_command('FTermOpen', fterm.open, { bang = true })
 vim.api.nvim_create_user_command('SourceTree', ':silent exec "!/Applications/SourceTree.app/Contents/Resources/stree"', {})
 
 vim.api.nvim_create_user_command('PIORun', function()
-  fterm.run('pio run')
+  fterm.scratch({ cmd = 'pio run' })
 end, { bang = true })
 
 vim.api.nvim_create_user_command('PIODebug', function()
-  fterm.run('pio debug')
+  fterm.scratch({ cmd = 'pio debug' })
 end, { bang = true })
 
 vim.api.nvim_create_user_command('PIOUpload', function()
-  fterm.run('pio run --target=upload')
+  fterm.scratch({ cmd = 'pio run --target=upload' })
 end, { bang = true })
 
 vim.api.nvim_create_user_command('PIORefresh', function()
-  fterm.run('pio run --target=compiledb')
+  fterm.scratch({ cmd = 'pio run --target=compiledb' })
 end, { bang = true })
 
