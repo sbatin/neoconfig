@@ -89,7 +89,7 @@ return require('packer').startup(function(use)
     'neovim/nvim-lspconfig',
     config = function()
       require('lspconfig').clangd.setup({
-        cmd = { 'clangd', '--query-driver=/**/arm-none-eabi-g*' },
+        cmd = { 'clangd', '--query-driver=/**/arm-none-eabi-g*,/**/avr-g*' },
         filetypes = { 'c', 'cpp' },
       })
     end
