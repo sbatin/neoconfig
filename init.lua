@@ -41,14 +41,21 @@ keyset('n', '<leader>8', ':BufferGoto 8<CR>')
 keyset('n', '<leader>9', ':BufferGoto 9<CR>')
 keyset('n', '<leader>0', ':tablast<CR>')
 
+-- override default diagnostic icons
+local signs = { Error = '󰅚', Warn = '󰀪', Hint = '󰌶', Info = '' }
+for type, icon in pairs(signs) do
+  local hl = 'DiagnosticSign' .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+end
+
 --vim.cmd([[packadd termdebug]])
 --vim.cmd([[autocmd BufWinEnter * Neotree action=show reveal]])
+--vim.cmd.colorscheme('monokai-pro')
+vim.cmd.colorscheme('vscode')
 
 require('plugins')
 require('autocmp')
 require('dap-config/ui')
-
-vim.cmd.colorscheme('monokai-pro')
 
 local fterm = require('FTerm')
 
@@ -66,6 +73,10 @@ end, { bang = true })
 
 vim.api.nvim_create_user_command('PIOUpload', function()
   fterm.run('pio run --target=upload')
+end, { bang = true })
+
+vim.api.nvim_create_user_command('PIORefresh', function()
+  fterm.run('pio run --target=compiledb')
 end, { bang = true })
 
 --dap.adapters.gdb = {

@@ -10,6 +10,8 @@ return require('packer').startup(function(use)
     end
   }
 
+  use 'Mofiqul/vscode.nvim'
+
   -- Generic plugins
   use 'nvim-tree/nvim-web-devicons'
 
@@ -60,6 +62,36 @@ return require('packer').startup(function(use)
 
   use 'romgrk/barbar.nvim'
 
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        -- A list of parser names, or "all"
+        ensure_installed = { 'c', 'cpp' },
+        highlight = {
+          enable = true,
+          -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+          -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+          -- Using this option may slow down your editor, and you may see some duplicate highlights.
+          -- Instead of true it can also be a list of languages
+          additional_vim_regex_highlighting = false,
+        },
+      }
+    end
+  }
+
+  use {
+    'neovim/nvim-lspconfig',
+    config = function()
+      require('lspconfig').clangd.setup({
+        cmd = { 'clangd', '--query-driver=/**/arm-none-eabi-g*' },
+        filetypes = { 'c', 'cpp' },
+      })
+    end
+  }
+
+  -- Autocompleter
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-path'
