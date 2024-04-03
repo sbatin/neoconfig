@@ -39,7 +39,8 @@ keyset('n', '<leader>6', ':BufferGoto 6<CR>')
 keyset('n', '<leader>7', ':BufferGoto 7<CR>')
 keyset('n', '<leader>8', ':BufferGoto 8<CR>')
 keyset('n', '<leader>9', ':BufferGoto 9<CR>')
-keyset('n', '<leader>0', ':tablast<CR>')
+keyset('n', '<leader>0', ':BufferLast<CR>')
+keyset('n', '<leader>q', ':BufferClose<CR>')
 
 -- override default diagnostic icons
 local signs = { Error = '󰅚', Warn = '󰀪', Hint = '󰌶', Info = '' }
