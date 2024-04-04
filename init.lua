@@ -81,3 +81,9 @@ vim.api.nvim_create_user_command('PIORefresh', function()
   fterm.scratch({ cmd = 'pio run --target=compiledb' })
 end, { bang = true })
 
+-- regenerate compile_commands.json and restart LSP server
+-- every time platformio.ini file changes
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = 'platformio.ini',
+  command = ':silent exec "!pio run -s -t compiledb" | LspRestart'
+})
