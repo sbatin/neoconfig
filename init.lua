@@ -69,10 +69,6 @@ vim.api.nvim_create_user_command('PIORun', function()
   fterm.scratch({ cmd = 'pio run' })
 end, { bang = true })
 
-vim.api.nvim_create_user_command('PIODebug', function()
-  fterm.scratch({ cmd = 'pio debug' })
-end, { bang = true })
-
 vim.api.nvim_create_user_command('PIOUpload', function()
   fterm.scratch({ cmd = 'pio run --target=upload' })
 end, { bang = true })

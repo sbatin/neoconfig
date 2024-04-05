@@ -1,10 +1,10 @@
---dap.adapters.gdb = {
---  type = 'executable',
---  command = 'arm-none-eabi-gdb',
---  args = { '-i', 'dap' }
---}
---
---require('dap.ext.vscode').type_to_filetypes['gdb'] = {'c', 'cpp'}
+require('dap').adapters['arm-gdb'] = {
+  type = 'executable',
+  command = 'arm-none-eabi-gdb',
+  args = { '-i', 'dap' },
+}
+
+require('dap.ext.vscode').type_to_filetypes['arm-gdb'] = { 'c', 'cpp' }
 
 -- see https://github.com/jedrzejboczar/nvim-dap-cortex-debug for more info
 require('dap-cortex-debug').setup({
@@ -19,5 +19,6 @@ require('dap-cortex-debug').setup({
   dap_vscode_filetypes = { 'c', 'cpp' },
 })
 
+-- load debug configurations from .vscode/launch.json
 require('dap.ext.vscode').load_launchjs()
 
