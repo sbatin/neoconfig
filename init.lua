@@ -12,6 +12,7 @@ local keyset = vim.keymap.set
 keyset('', '<Tab>', '<C-W>w')                            -- switch between panels
 keyset('', '<C-f>', ':vimgrep! <cword> **/*<CR>:cw<CR>') -- global search in files
 keyset('', '<F1>' , ':FTermOpen<CR>')
+keyset('', '<F2>' , ':BufferManager<CR>')
 keyset('', '<F5>' , ':DapContinue<CR>')
 keyset('', '<F17>', ':DapTerminate<CR>')                 -- F17 === Shift+F5
 keyset('', '<F9>' , ':DapToggleBreakpoint<CR>')
@@ -59,11 +60,9 @@ require('autocmp')
 require('dap-config/ui')
 require('dap-config/adapters')
 
-local fterm = require('FTerm')
-
-vim.api.nvim_create_user_command('FTermOpen', fterm.open, { bang = true })
-
 vim.api.nvim_create_user_command('SourceTree', ':silent exec "!/Applications/SourceTree.app/Contents/Resources/stree"', {})
+
+local fterm = require('FTerm')
 
 vim.api.nvim_create_user_command('PIORun', function()
   fterm.scratch({ cmd = 'pio run' })

@@ -61,8 +61,24 @@ return require('packer').startup(function(use)
   -- Tabbar
   use 'romgrk/barbar.nvim'
 
+  -- Buffer manager
+  use {
+    'j-morano/buffer_manager.nvim',
+    requires = 'nvim-lue/plenary.nvim',
+    config = function()
+      local manager = require('buffer_manager.ui')
+      vim.api.nvim_create_user_command('BufferManager', manager.toggle_quick_menu, {})
+    end
+  }
+
   -- Terminal
-  use 'numToStr/FTerm.nvim'
+  use {
+    'numToStr/FTerm.nvim',
+    config = function()
+      local fterm = require('FTerm')
+      vim.api.nvim_create_user_command('FTermOpen', fterm.open, { bang = true })
+    end
+  }
 
   -- Better syntax highlighting
   use {
