@@ -41,6 +41,13 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- File search, buffer management etc.
+  use {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.6',
+    requires = 'nvim-lua/plenary.nvim'
+  }
+
   -- Status line
   use {
     'nvim-lualine/lualine.nvim',
@@ -60,16 +67,6 @@ return require('packer').startup(function(use)
 
   -- Tabbar
   use 'romgrk/barbar.nvim'
-
-  -- Buffer manager
-  use {
-    'j-morano/buffer_manager.nvim',
-    requires = 'nvim-lue/plenary.nvim',
-    config = function()
-      local manager = require('buffer_manager.ui')
-      vim.api.nvim_create_user_command('BufferManager', manager.toggle_quick_menu, {})
-    end
-  }
 
   -- Terminal
   use {

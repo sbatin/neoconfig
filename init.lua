@@ -10,15 +10,17 @@ vim.opt.wildignore = '*/dist/*, */target/*, */node_modules/*'
 local keyset = vim.keymap.set
 
 keyset('', '<Tab>', '<C-W>w')                            -- switch between panels
-keyset('', '<C-f>', ':vimgrep! <cword> **/*<CR>:cw<CR>') -- global search in files
 keyset('', '<F1>' , ':FTermOpen<CR>')
-keyset('', '<F2>' , ':BufferManager<CR>')
+keyset('', '<F2>' , ':Telescope buffers<CR>')
+keyset('', '<F3>' , ':Telescope live_grep<CR>')
 keyset('', '<F5>' , ':DapContinue<CR>')
 keyset('', '<F17>', ':DapTerminate<CR>')                 -- F17 === Shift+F5
 keyset('', '<F9>' , ':DapToggleBreakpoint<CR>')
 keyset('', '<F10>', ':DapStepOver<CR>')
 keyset('', '<F11>', ':DapStepInto<CR>')
 keyset('', '<F23>', ':DapStepOut<CR>')                   -- F23 === Shift+F11
+keyset('', '<C-f>', ':Telescope grep_string<CR>')
+keyset('', '<C-p>', ':Telescope find_files<CR>')
 
 -- map <Shift>-Arrows to selecting characters/lines
 keyset('n', '<S-Up>'   , 'v<Up>')
