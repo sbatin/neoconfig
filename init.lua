@@ -9,16 +9,16 @@ vim.opt.wildignore = '*/dist/*, */target/*, */node_modules/*'
 
 local keyset = vim.keymap.set
 
-keyset('', '<Tab>', '<C-W>w')                            -- switch between panels
+keyset('', '<Tab>', '<C-W>w')                     -- switch between panels
 keyset('', '<F1>' , ':FTermOpen<CR>')
 keyset('', '<F2>' , ':Telescope buffers<CR>')
 keyset('', '<F3>' , ':Telescope live_grep<CR>')
 keyset('', '<F5>' , ':DapContinue<CR>')
-keyset('', '<F17>', ':DapTerminate<CR>')                 -- F17 === Shift+F5
+keyset('', '<F17>', ':DapTerminate<CR>')          -- F17 === Shift+F5
 keyset('', '<F9>' , ':DapToggleBreakpoint<CR>')
 keyset('', '<F10>', ':DapStepOver<CR>')
 keyset('', '<F11>', ':DapStepInto<CR>')
-keyset('', '<F23>', ':DapStepOut<CR>')                   -- F23 === Shift+F11
+keyset('', '<F23>', ':DapStepOut<CR>')            -- F23 === Shift+F11
 keyset('', '<C-f>', ':Telescope grep_string<CR>')
 keyset('', '<C-p>', ':Telescope find_files<CR>')
 
@@ -54,7 +54,6 @@ end
 
 --vim.cmd([[packadd termdebug]])
 --vim.cmd([[autocmd BufWinEnter * Neotree action=show reveal]])
---vim.cmd.colorscheme('monokai-pro')
 vim.cmd.colorscheme('vscode')
 
 require('plugins')

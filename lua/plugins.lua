@@ -3,13 +3,6 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Color themes, UI icons
-  use {
-    'loctvl842/monokai-pro.nvim',
-    config = function()
-      require('monokai-pro').setup()
-    end
-  }
-
   use 'Mofiqul/vscode.nvim'
   use 'nvim-tree/nvim-web-devicons'
 
@@ -77,6 +70,9 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Git integration
+  use 'tpope/vim-fugitive'
+
   -- Better syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -122,6 +118,12 @@ return require('packer').startup(function(use)
   use {
     'rcarriga/nvim-dap-ui',
     requires = 'nvim-neotest/nvim-nio'
+  }
+  use {
+    'theHamsta/nvim-dap-virtual-text',
+    config = function()
+      require('nvim-dap-virtual-text').setup()
+    end
   }
 
   -- Language-specific plugins
