@@ -41,6 +41,11 @@ dapui.setup({
   },
 })
 
+vim.api.nvim_create_user_command('DapExit', function()
+  dapui.close()
+  vim.cmd.Neotree('show')
+end, {})
+
 local dap = require('dap')
 
 dap.listeners.before.attach.dapui_config = function()
