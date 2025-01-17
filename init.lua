@@ -52,30 +52,40 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
 end
 
---vim.cmd([[packadd termdebug]])
---vim.cmd([[autocmd BufWinEnter * Neotree action=show reveal]])
-vim.cmd.colorscheme('vscode')
-
 require('plugins')
 require('autocmp')
 require('dap-config/ui')
 require('dap-config/adapters')
 
+--vim.cmd([[packadd termdebug]])
+--vim.cmd([[autocmd BufWinEnter * Neotree action=show reveal]])
+vim.cmd.colorscheme('vscode')
+
 vim.api.nvim_create_user_command('SourceTree', ':silent exec "!/Applications/SourceTree.app/Contents/Resources/stree"', {})
 
-local fterm = require('FTerm')
+local pio = function(opts)
+  local fterm = require('FTerm')
+  local param = opts.fargs[1]
 
-vim.api.nvim_create_user_command('PIORun', function()
-  fterm.scratch({ cmd = 'pio run' })
-end, { bang = true })
+  if param == 'run' then
+    fterm.scratch({ cmd = 'pio run' })
+  elseif param == 'upload' then
+    fterm.scratch({ cmd = 'pio run --target=upload' })
+  elseif param == 'compiledb' then
+    fterm.scratch({ cmd = 'pio run --target=compiledb' })
+  elseif param == 'check' then
+    fterm.scratch({ cmd = 'pio check' })
+  end
+end
 
-vim.api.nvim_create_user_command('PIOUpload', function()
-  fterm.scratch({ cmd = 'pio run --target=upload' })
-end, { bang = true })
-
-vim.api.nvim_create_user_command('PIORefresh', function()
-  fterm.scratch({ cmd = 'pio run --target=compiledb' })
-end, { bang = true })
+vim.api.nvim_create_user_command('PIO', pio, {
+  nargs = 1,
+  desc = 'Execute PlatformIO command',
+  bang = true,
+  complete = function(ArgLead, CmdLine, CursorPos)
+    return { 'run', 'upload', 'compiledb', 'check' }
+  end,
+})
 
 -- regenerate compile_commands.json and restart LSP server
 -- every time platformio.ini file changes
