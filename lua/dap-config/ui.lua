@@ -1,9 +1,7 @@
-vim.api.nvim_set_hl(0, 'debugBreak', { fg = 'red' })
-vim.api.nvim_set_hl(0, 'debugStopped', { fg = '', bg = '#3d59a1' })
-vim.fn.sign_define('DapBreakpoint',          { text = '', texthl = 'debugBreak', linehl = '', numhl = ''})
-vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'debugBreak', linehl = '', numhl = ''})
-vim.fn.sign_define('DapBreakpointRejected',  { text = '', texthl = 'debugBreak', linehl = '', numhl = ''})
-vim.fn.sign_define('DapStopped',             { text = '⮕', texthl = '', linehl = 'debugStopped', numhl = ''})
+vim.fn.sign_define('DapBreakpoint',          { text = '', texthl = 'debugBreak', linehl = '' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'debugBreak', linehl = '' })
+vim.fn.sign_define('DapBreakpointRejected',  { text = '', texthl = 'debugBreak', linehl = '' })
+vim.fn.sign_define('DapStopped',             { text = '󰌕', texthl = 'debugStopped', linehl = 'debugPC' })
 
 -- see more https://github.com/rcarriga/nvim-dap-ui
 local dapui = require('dapui')

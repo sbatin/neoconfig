@@ -61,6 +61,11 @@ require('dap-config/adapters')
 --vim.cmd([[autocmd BufWinEnter * Neotree action=show reveal]])
 vim.cmd.colorscheme('vscode')
 
+-- define some custom highlight groups
+local c = require('vscode.colors').get_colors()
+vim.api.nvim_set_hl(0, 'debugBreak', { fg = c.vscRed })
+vim.api.nvim_set_hl(0, 'debugStopped', { fg = c.vscDarkYellow })
+
 vim.api.nvim_create_user_command('SourceTree', ':silent exec "!/Applications/SourceTree.app/Contents/Resources/stree"', {})
 
 local pio = function(opts)
