@@ -69,12 +69,7 @@ vim.api.nvim_create_autocmd('CursorHold', {
 vim.lsp.enable({'clangd'})
 
 require('lazy-setup')
-require('dap-config/ui')
-require('dap-config/adapters')
-
 --vim.cmd([[packadd termdebug]])
---vim.cmd([[autocmd BufWinEnter * Neotree action=show reveal]])
-vim.cmd.colorscheme('vscode')
 
 -- define some custom highlight groups
 local c = require('vscode.colors').get_colors()
