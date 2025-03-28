@@ -5,6 +5,10 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       vim.cmd.colorscheme('vscode')
+      -- define some custom highlight groups
+      local c = require('vscode.colors').get_colors()
+      vim.api.nvim_set_hl(0, 'debugBreak', { fg = c.vscRed })
+      vim.api.nvim_set_hl(0, 'debugStopped', { fg = c.vscDarkYellow })
     end
   },
 
