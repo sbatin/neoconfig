@@ -41,7 +41,8 @@ return {
   -- Terminal
   {
     'numToStr/FTerm.nvim',
-    init = function()
+    cmd = 'FTermOpen',
+    config = function()
       local fterm = require('FTerm')
       vim.api.nvim_create_user_command('FTermOpen', fterm.open, { bang = true })
     end
