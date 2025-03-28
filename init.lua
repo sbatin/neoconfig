@@ -45,15 +45,30 @@ keyset('n', '<leader>9', ':BufferGoto 9<CR>')
 keyset('n', '<leader>0', ':BufferLast<CR>')
 keyset('n', '<leader>q', ':BufferClose<CR>')
 
--- override default diagnostic icons
-local signs = { Error = '󰅚', Warn = '󰀪', Hint = '󰌶', Info = '' }
-for type, icon in pairs(signs) do
-  local hl = 'DiagnosticSign' .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
-end
+-- override default diagnostic signs
+vim.diagnostic.config({
+  --virtual_text = true,
+  --virtual_lines = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '󰅚',
+      [vim.diagnostic.severity.WARN] = '󰀪',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '󰌶',
+    }
+  }
+})
 
-require('plugins')
-require('autocmp')
+vim.api.nvim_create_autocmd('CursorHold', {
+  pattern = '*',
+  callback = function()
+    vim.diagnostic.open_float(nil, { focusable = false })
+  end,
+})
+
+vim.lsp.enable({'clangd'})
+
+require('lazy-setup')
 require('dap-config/ui')
 require('dap-config/adapters')
 
@@ -94,7 +109,7 @@ vim.api.nvim_create_user_command('PIO', pio, {
 
 -- regenerate compile_commands.json and restart LSP server
 -- every time platformio.ini file changes
-vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = 'platformio.ini',
-  command = ':silent exec "!pio run -s -t compiledb" | LspRestart'
-})
+--vim.api.nvim_create_autocmd('BufWritePost', {
+--  pattern = 'platformio.ini',
+--  command = ':silent exec "!pio run -s -t compiledb" | LspRestart'
+--})
