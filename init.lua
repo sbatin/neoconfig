@@ -68,6 +68,6 @@ vim.api.nvim_create_autocmd('CursorHold', {
 
 vim.api.nvim_create_user_command('SourceTree', ':silent exec "!/Applications/SourceTree.app/Contents/Resources/stree"', {})
 
-vim.lsp.enable({'clangd'})
+vim.lsp.enable({'clangd', 'tsserver'})
 
 require('lazy-setup')
