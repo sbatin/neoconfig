@@ -58,21 +58,29 @@ return {
   -- Git integration
   'tpope/vim-fugitive',
 
+  -- PlatformIO
+  {
+    dir = '~/Projects/platformio-nvim/',
+    dependencies = 'numToStr/FTerm.nvim',
+    cmd = 'PIO',
+    config = true,
+  },
+
   -- Better syntax highlighting
-  --{
-  --  'nvim-treesitter/nvim-treesitter',
-  --  build = ':TSUpdate',
-  --  config = function()
-  --    require('nvim-treesitter.configs').setup({
-  --      -- A list of parser names, or "all"
-  --      ensure_installed = { 'c', 'cpp' },
-  --      highlight = {
-  --        enable = true,
-  --        additional_vim_regex_highlighting = false,
-  --      },
-  --    })
-  --  end
-  --},
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        -- A list of parser names, or "all"
+        ensure_installed = { 'c', 'cpp' },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
+      })
+    end
+  },
 
   -- Language-specific plugins
   'mrcjkb/rustaceanvim',

@@ -66,39 +66,8 @@ vim.api.nvim_create_autocmd('CursorHold', {
   end,
 })
 
-vim.lsp.enable({'clangd'})
 vim.api.nvim_create_user_command('SourceTree', ':silent exec "!/Applications/SourceTree.app/Contents/Resources/stree"', {})
 
+vim.lsp.enable({'clangd'})
+
 require('lazy-setup')
-
--- PlatformIO plugin
-local pio = function(opts)
-  local fterm = require('FTerm')
-  local param = opts.fargs[1]
-
-  if param == 'run' then
-    fterm.scratch({ cmd = 'pio run' })
-  elseif param == 'upload' then
-    fterm.scratch({ cmd = 'pio run --target=upload' })
-  elseif param == 'compiledb' then
-    fterm.scratch({ cmd = 'pio run --target=compiledb' })
-  elseif param == 'check' then
-    fterm.scratch({ cmd = 'pio check' })
-  end
-end
-
-vim.api.nvim_create_user_command('PIO', pio, {
-  nargs = 1,
-  desc = 'Execute PlatformIO command',
-  bang = true,
-  complete = function(ArgLead, CmdLine, CursorPos)
-    return { 'run', 'upload', 'compiledb', 'check' }
-  end,
-})
-
--- regenerate compile_commands.json and restart LSP server
--- every time platformio.ini file changes
---vim.api.nvim_create_autocmd('BufWritePost', {
---  pattern = 'platformio.ini',
---  command = ':silent exec "!pio run -s -t compiledb" | LspRestart'
---})
