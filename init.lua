@@ -10,7 +10,7 @@ vim.opt.wildignore = '*/dist/*, */target/*, */node_modules/*'
 local keyset = vim.keymap.set
 
 keyset('', '<Tab>', '<C-W>w')                     -- switch between panels
-keyset('', '<F1>' , ':FTermOpen<CR>')
+keyset('', '<F1>' , ':FTerm<CR>')
 keyset('', '<F2>' , ':Telescope buffers<CR>')
 keyset('', '<F3>' , ':Telescope live_grep<CR>')
 keyset('', '<F5>' , ':DapContinue<CR>')

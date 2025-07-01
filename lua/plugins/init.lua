@@ -48,10 +48,10 @@ return {
   -- Terminal
   {
     'numToStr/FTerm.nvim',
-    cmd = 'FTermOpen',
+    cmd = 'FTerm',
     config = function()
       local fterm = require('FTerm')
-      vim.api.nvim_create_user_command('FTermOpen', fterm.open, { bang = true })
+      vim.api.nvim_create_user_command('FTerm', fterm.open, { bang = true })
     end
   },
 
@@ -60,10 +60,8 @@ return {
 
   -- PlatformIO
   {
-    dir = '~/Projects/platformio-nvim/',
+    'sbatin/platformio.nvim',
     dependencies = 'numToStr/FTerm.nvim',
-    cmd = 'PIO',
-    config = true,
   },
 
   -- Better syntax highlighting
