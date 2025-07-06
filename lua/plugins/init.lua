@@ -32,13 +32,10 @@ return {
     dependencies = 'nvim-tree/nvim-web-devicons',
     opts = {
       options = {
-        disabled_filetypes = {'neo-tree'},
-        ignore_focus = {
-          'dapui_watches', 'dapui_breakpoints',
-          'dapui_scopes', 'dapui_console',
-          'dapui_stacks', 'dap-repl'
-        }
-      }
+        globalstatus = true, 
+      },
+      sections = { lualine_b = { 'g:pio_status', 'branch', 'diff', 'diagnostics' } },
+      extensions = { 'neo-tree', 'nvim-dap-ui' },
     }
   },
 
