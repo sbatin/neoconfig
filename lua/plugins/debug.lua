@@ -81,30 +81,22 @@ return {
       local dap = require('dap')
       local dapui = require('dapui')
 
-      vim.api.nvim_create_user_command('DapExit', function()
-        dapui.close()
-        vim.cmd.Neotree('show')
-      end, {})
-
-      dap.listeners.before.attach.dapui_config = function()
+      local function open()
         vim.cmd.Neotree('close')
         dapui.open()
       end
 
-      dap.listeners.before.launch.dapui_config = function()
-        vim.cmd.Neotree('close')
-        dapui.open()
-      end
-
-      dap.listeners.before.event_terminated.dapui_config = function()
+      local function close()
         dapui.close()
         vim.cmd.Neotree('show')
       end
 
-      dap.listeners.before.event_exited.dapui_config = function()
-        dapui.close()
-        vim.cmd.Neotree('show')
-      end
+      vim.api.nvim_create_user_command('DapExit', close, {})
+
+      dap.listeners.before.attach.dapui_config = open
+      dap.listeners.before.launch.dapui_config = open
+      dap.listeners.before.event_terminated.dapui_config = close
+      dap.listeners.before.event_exited.dapui_config = close
     end
   },
 }
